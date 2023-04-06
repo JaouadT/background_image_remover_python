@@ -6,7 +6,7 @@ import cv2
 import uuid
 import os
 import time
-
+import os
 from model import U2NET
 from torch.autograd import Variable
 from skimage import io, transform
@@ -28,17 +28,17 @@ input_image_path = args['image_path']
 image_filename = input_image_path.split()
 
 global model
-print("---Loading Model---")
+cwd = os.getcwd()
+
 model_name = 'u2net'
-model_dir = os.path.join('saved_models',
-                            model_name, model_name + '.pth')
+file_id = '1ElPxUoPkqbiQA45zhLszn_8h72ivJo-Y'
+filename = 'u2net.pth'
+model_dir = os.path.join(cwd,'saved_models', 'u2net', file_id)
 
 if not os.path.isfile(model_dir):
-    file_id = '1ca4TS-l-iV-pIv28pmFXYPVCgZhffOYq'
-    filename = 'u2net.pth'
-    root = "./"
-    download_file_from_google_drive(file_id, 'saved_models/u2net', filename)
+    download_file_from_google_drive(file_id, os.path.join(cwd,'saved_models', 'u2net'))
 
+print("---Loading Model---")
 net = U2NET(3, 1)
 if torch.cuda.is_available():
     net.load_state_dict(torch.load(model_dir))
@@ -93,3 +93,4 @@ imo = Image.fromarray(imo, 'RGBA')
 print("Saving....")
 imo.save("results/segmented_image.png")
 print("Saved....")
+

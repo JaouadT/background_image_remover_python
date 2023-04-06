@@ -8,7 +8,7 @@ Original repo: [U2-Net](https://github.com/xuebinqin/U-2-Net)
 
 How to use:
 1. Clone this repo.
-2. Install requirements.
+2. Install requirements: `pip install -r requirements.txt`.
 3. Run `segment.py` with the command: `python segment.py -img_path image.png`
 4. Segmented image will be stored in the 
 results folder.

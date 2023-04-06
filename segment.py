@@ -14,8 +14,7 @@ from PIL import Image
 import requests
 from io import BytesIO
 import argparse
-import gdown
-from google_drive_downloader import GoogleDriveDownloader as gdd
+from torchvision.datasets.utils import download_file_from_google_drive
 
 ap = argparse.ArgumentParser()
 ap.add_argument(
@@ -33,6 +32,13 @@ print("---Loading Model---")
 model_name = 'u2net'
 model_dir = os.path.join('saved_models',
                             model_name, model_name + '.pth')
+
+if not os.path.isfile(model_dir):
+    file_id = '1ca4TS-l-iV-pIv28pmFXYPVCgZhffOYq'
+    filename = 'u2net.pth'
+    root = "./"
+    download_file_from_google_drive(file_id, 'saved_models/u2net', filename)
+
 net = U2NET(3, 1)
 if torch.cuda.is_available():
     net.load_state_dict(torch.load(model_dir))

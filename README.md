@@ -10,5 +10,13 @@ How to use:
 1. Clone this repo.
 2. Install requirements.
 3. Run `segment.py` with the command: `python segment.py -img_path image.png`
-4. Segmented image will be stored in the results folder.
+4. Segmented image will be stored in the 
+results folder.
+
+Image: 
+![alt text](image.png "Original image")
+
+Segmented image: 
+![alt text](/results/segmented_image.png "Original image")
+
 
